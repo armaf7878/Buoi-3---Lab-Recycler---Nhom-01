@@ -1,5 +1,6 @@
 package com.example.buoi3_lab_recycler_nhom01;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -39,7 +40,19 @@ public class DetailActivity extends AppCompatActivity {
         orderButton = findViewById(R.id.orderButton);
         orderButton.setOnClickListener(view -> {
             Toast.makeText(this, "Bạn đã gọi món thành công", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences1 = getSharedPreferences("OrderedFood", MODE_PRIVATE);
+            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+            editor1.putString("orderedFoodName", food.getName());
+            editor1.apply();
         });
+
+        //Buổi 4 - Lab 3 SHAREREFERENCES
+        SharedPreferences preferences = getSharedPreferences("LastViewedFood", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("lastFoodName", food.getName());
+        editor.apply();
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

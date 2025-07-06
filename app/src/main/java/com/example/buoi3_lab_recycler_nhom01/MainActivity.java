@@ -1,6 +1,9 @@
 package com.example.buoi3_lab_recycler_nhom01;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         itemTouchHelper.attachToRecyclerView(recycler_food);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("LastViewedFood", MODE_PRIVATE);
+        String lastFood = sharedPreferences.getString("lastFoodName", "Bạn chưa xem món ăn nào");
+        TextView lastViewedTextView = findViewById(R.id.lastViewedTextView);
+        lastViewedTextView.setText("Bạn vừa xem:" + lastFood);
+
+        SharedPreferences sharedPreferences1 = getSharedPreferences("OrderedFood", MODE_PRIVATE);
+        String OrderedFood = sharedPreferences1.getString("orderedFoodName", null);
+        if (OrderedFood != null){
+            Toast.makeText(this, "Bạn đã gọi món:" + OrderedFood, Toast.LENGTH_LONG).show();
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
