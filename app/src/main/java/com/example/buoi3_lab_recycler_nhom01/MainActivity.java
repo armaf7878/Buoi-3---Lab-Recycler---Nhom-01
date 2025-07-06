@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recycler_food = findViewById(R.id.recycler_food);
         List<Food> foodList = new ArrayList<>();
-        foodList.add(new Food("Phở", R.drawable.pho));
-        foodList.add(new Food("Bún chả", R.drawable.buncha));
-        foodList.add(new Food("Bánh mì", R.drawable.banhmi));
-        foodList.add(new Food("Cơm tấm", R.drawable.comtam));
-        foodList.add(new Food("Gỏi cuốn", R.drawable.goicuon));
+        foodList.add(new Food("Phở", R.drawable.pho,"Phở bò truyền thống với nước dùng đậm đà.", 45000.0));
+        foodList.add(new Food("Bún chả", R.drawable.buncha, "Bún chả Hà Nội thơm ngon, thịt nướng vàng ươm.", 40000.0));
+        foodList.add(new Food("Bánh mì", R.drawable.banhmi, "Bánh mì kẹp thịt, rau sống, nước sốt.", 20000.0));
+        foodList.add(new Food("Cơm tấm", R.drawable.comtam, "Cơm tấm sườn bì chả, trứng ốp la.", 50000.0));
+        foodList.add(new Food("Gỏi cuốn", R.drawable.goicuon, "Gỏi cuốn tôm thịt, nước chấm đậm đà.", 30000.0));
         foodAdapter = new FoodAdapter(foodList);
 
         recycler_food.setLayoutManager(new LinearLayoutManager(this));

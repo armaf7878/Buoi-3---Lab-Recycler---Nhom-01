@@ -1,5 +1,6 @@
 package com.example.buoi3_lab_recycler_nhom01;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         Food food = foodList.get(position);
         holder.food_img.setImageResource(food.getImg_resID());
         holder.food_name.setText(food.getName());
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
+            intent.putExtra("foodName", food.getName());
+            intent.putExtra("foodImage", food.getImg_resID());
+            intent.putExtra("foodDescription", food.getDescription());
+            intent.putExtra("foodPrice", food.getPrice());
+            view.getContext().startActivity(intent);
+        });
     }
 
     @Override
