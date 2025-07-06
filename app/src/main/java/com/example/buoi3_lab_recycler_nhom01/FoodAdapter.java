@@ -49,11 +49,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
         holder.food_name.setText(food.getName());
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
-            intent.putExtra("foodName", food.getName());
-            intent.putExtra("foodImage", food.getImg_resID());
-            intent.putExtra("foodDescription", food.getDescription());
-            intent.putExtra("foodPrice", food.getPrice());
+            Intent intent = new Intent(view.getContext(), DetailActivity.class);
+//            intent.putExtra("foodName", food.getName()); //Buổi 4 - Lab 1
+//            intent.putExtra("foodImage", food.getImg_resID()); //Buổi 4 - Lab 1
+//            intent.putExtra("foodDescription", food.getDescription()); //Buổi 4 - Lab 1
+//            intent.putExtra("foodPrice", food.getPrice()); //Buổi 4 - Lab 1
+            intent.putExtra("foodItem", food);
             view.getContext().startActivity(intent);
         });
     }

@@ -1,6 +1,11 @@
 package com.example.buoi3_lab_recycler_nhom01;
 
-public class Food {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Food implements Parcelable {
     private String name;
     private int img_resID;
     private String description;
@@ -13,6 +18,38 @@ public class Food {
         this.price = price;
     }
 
+
+    protected Food(Parcel in) {
+        name = in.readString();
+        img_resID = in.readInt();
+        description = in.readString();
+        price = in.readDouble();
+    }
+
+    public static final Creator<Food> CREATOR = new Creator<Food>() {
+        @Override
+        public Food createFromParcel(Parcel in) {
+            return new Food(in);
+        }
+
+        @Override
+        public Food[] newArray(int size) {
+            return new Food[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeInt(img_resID);
+        parcel.writeString(description);
+        parcel.writeDouble(price);
+    }
 
     public String getName() {
         return name;
