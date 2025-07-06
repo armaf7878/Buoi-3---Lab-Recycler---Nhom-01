@@ -35,4 +35,29 @@
         android:layout_marginTop="15dp"
         android:text="Đặt Hàng"/>
 
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="15dp"
+        android:text="Gọi món"/>
+
+    <Button
+        android:id="@+id/btnMap"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="15dp"
+        android:text="Xem bản đồ"/>
+
+    <Button
+        android:id="@+id/btnWeb"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="15dp"
+        android:text="Truy cập website"/>
+
+
 </LinearLayout>

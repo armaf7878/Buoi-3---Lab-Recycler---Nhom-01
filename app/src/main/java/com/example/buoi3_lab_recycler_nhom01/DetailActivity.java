@@ -1,6 +1,8 @@
 package com.example.buoi3_lab_recycler_nhom01;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class DetailActivity extends AppCompatActivity {
     private TextView detailTextView;
     private ImageView detailImageView;
-    private Button orderButton;
+    private Button orderButton, btnCall, btnMap, btnWeb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,27 @@ public class DetailActivity extends AppCompatActivity {
         editor.putString("lastFoodName", food.getName());
         editor.apply();
 
+        btnCall = findViewById(R.id.btnCall);
+        btnCall.setOnClickListener(view -> {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:0123456789"));
+            startActivity(callIntent);
+        });
 
+        btnMap = findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(view -> {
+            String geoURI = "geo:10.792604962984818,106.69606433067322?q=10.792604962984818,106.69606433067322(Cơm tấm Phúc Lộc Thọ)";
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoURI));
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        });
+
+        btnWeb = findViewById(R.id.btnWeb);
+        btnWeb.setOnClickListener(view -> {
+            String url = "https://comtamphucloctho.vn/";
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(webIntent);
+        });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
